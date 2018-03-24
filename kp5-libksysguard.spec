@@ -5,7 +5,7 @@
 Summary:	Library for monitoring your system
 Name:		kp5-%{kpname}
 Version:	5.11.2
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -74,7 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{kpname}5.lang
 %defattr(644,root,root,755)
 /etc/dbus-1/system.d/org.kde.ksysguard.processlisthelper.conf
-%attr(755,root,root) %{_libdir}/kauth/ksysguardprocesslist_helper
+%attr(755,root,root) %{_libexecdir}/kauth/ksysguardprocesslist_helper
 %attr(755,root,root) %{_libdir}/libksgrd.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libksgrd.so.7
 %attr(755,root,root) %{_libdir}/libksignalplotter.so.*.*.*
