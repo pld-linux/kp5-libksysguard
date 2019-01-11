@@ -1,15 +1,15 @@
-%define		kdeplasmaver	5.14.4
-%define		qtver		5.3.2
+%define		kdeplasmaver	5.14.5
+%define		qtver		5.9.0
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
 Name:		kp5-%{kpname}
-Version:	5.14.4
+Version:	5.14.5
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	8b43076fe3d8845d7f890721a90b8210
+# Source0-md5:	35d1a15216d54e929229f85e7d4dfc01
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -74,6 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{kpname}5.lang
 %defattr(644,root,root,755)
 /etc/dbus-1/system.d/org.kde.ksysguard.processlisthelper.conf
+/etc/xdg/libksysguard.categories
 %attr(755,root,root) %{_libexecdir}/kauth/ksysguardprocesslist_helper
 %attr(755,root,root) %{_libdir}/libksgrd.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libksgrd.so.7
