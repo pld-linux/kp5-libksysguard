@@ -1,15 +1,15 @@
-%define		kdeplasmaver	5.14.5
+%define		kdeplasmaver	5.15.3
 %define		qtver		5.9.0
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
 Name:		kp5-%{kpname}
-Version:	5.14.5
+Version:	5.15.3
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	35d1a15216d54e929229f85e7d4dfc01
+# Source0-md5:	94d5a8505d3ecc69726aa9deb592bf97
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -24,6 +24,7 @@ BuildRequires:	kf5-kservice-devel
 BuildRequires:	kf5-kwidgetsaddons-devel
 BuildRequires:	kf5-kwindowsystem-devel
 BuildRequires:	kf5-plasma-framework-devel
+BuildRequires:	ninja
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	xz
 BuildRequires:	zlib-devel
@@ -52,16 +53,14 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 %build
 install -d build
 cd build
-%cmake \
+%cmake -G Ninja \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	../
-%{__make}
+%ninja_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%{__make} -C build/ install \
-        DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %find_lang %{kpname}5 --all-name --with-kde
 
