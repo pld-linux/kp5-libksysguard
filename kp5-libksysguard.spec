@@ -1,15 +1,15 @@
-%define		kdeplasmaver	5.21.2
+%define		kdeplasmaver	5.21.3
 %define		qtver		5.9.0
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
 Name:		kp5-%{kpname}
-Version:	5.21.2
+Version:	5.21.3
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	6135b717952dcb1c04e374d64b72595a
+# Source0-md5:	fcf349a0cc3c8a94621d1ec388c7a535
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -76,25 +76,25 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/system.d/org.kde.ksysguard.processlisthelper.conf
 %attr(755,root,root) %{_libexecdir}/kauth/ksysguardprocesslist_helper
 %attr(755,root,root) %{_libdir}/libksgrd.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libksgrd.so.9
+%ghost %{_libdir}/libksgrd.so.9
 %attr(755,root,root) %{_libdir}/libksignalplotter.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libksignalplotter.so.9
+%ghost %{_libdir}/libksignalplotter.so.9
 %attr(755,root,root) %{_libdir}/liblsofui.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liblsofui.so.9
+%ghost %{_libdir}/liblsofui.so.9
 %attr(755,root,root) %{_libdir}/libprocesscore.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libprocesscore.so.9
+%ghost %{_libdir}/libprocesscore.so.9
 %attr(755,root,root) %{_libdir}/libprocessui.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libprocessui.so.9
+%ghost %{_libdir}/libprocessui.so.9
 %{_datadir}/dbus-1/system-services/org.kde.ksysguard.processlisthelper.service
 %{_datadir}/ksysguard
 %{_datadir}/polkit-1/actions/org.kde.ksysguard.processlisthelper.policy
 %{_datadir}/qlogging-categories5/libksysguard.categories
 
-%attr(755,root,root) %ghost %{_libdir}/libKSysGuardFormatter.so.1
+%ghost %{_libdir}/libKSysGuardFormatter.so.1
 %attr(755,root,root) %{_libdir}/libKSysGuardFormatter.so.5.*.*
-%attr(755,root,root) %ghost %{_libdir}/libKSysGuardSensorFaces.so.1
+%ghost %{_libdir}/libKSysGuardSensorFaces.so.1
 %attr(755,root,root) %{_libdir}/libKSysGuardSensorFaces.so.5.*.*
-%attr(755,root,root) %ghost %{_libdir}/libKSysGuardSensors.so.1
+%ghost %{_libdir}/libKSysGuardSensors.so.1
 %attr(755,root,root) %{_libdir}/libKSysGuardSensors.so.5.*.*
 %attr(755,root,root) %{_libdir}/qt5/plugins/designer/ksignalplotter5widgets.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/designer/ksysguard5widgets.so
@@ -123,11 +123,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/ksysguard
 %{_libdir}/cmake/KF5SysGuard
 %{_libdir}/cmake/KSysGuard
-%attr(755,root,root) %{_libdir}/libksgrd.so
-%attr(755,root,root) %{_libdir}/libksignalplotter.so
-%attr(755,root,root) %{_libdir}/liblsofui.so
-%attr(755,root,root) %{_libdir}/libprocesscore.so
-%attr(755,root,root) %{_libdir}/libprocessui.so
-%attr(755,root,root) %{_libdir}/libKSysGuardFormatter.so
-%attr(755,root,root) %{_libdir}/libKSysGuardSensorFaces.so
-%attr(755,root,root) %{_libdir}/libKSysGuardSensors.so
+%{_libdir}/libksgrd.so
+%{_libdir}/libksignalplotter.so
+%{_libdir}/liblsofui.so
+%{_libdir}/libprocesscore.so
+%{_libdir}/libprocessui.so
+%{_libdir}/libKSysGuardFormatter.so
+%{_libdir}/libKSysGuardSensorFaces.so
+%{_libdir}/libKSysGuardSensors.so
