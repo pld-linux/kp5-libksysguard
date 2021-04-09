@@ -1,15 +1,15 @@
-%define		kdeplasmaver	5.21.3
+%define		kdeplasmaver	5.21.4
 %define		qtver		5.9.0
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
 Name:		kp5-%{kpname}
-Version:	5.21.3
+Version:	5.21.4
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	fcf349a0cc3c8a94621d1ec388c7a535
+# Source0-md5:	a48f9803e142531ceedbc11209573f9d
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
