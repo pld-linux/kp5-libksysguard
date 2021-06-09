@@ -1,15 +1,15 @@
-%define		kdeplasmaver	5.21.5
+%define		kdeplasmaver	5.22.0
 %define		qtver		5.9.0
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
 Name:		kp5-%{kpname}
-Version:	5.21.5
+Version:	5.22.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	55306f1c3a27f984d7d349068056e77a
+# Source0-md5:	1a7e5975ab0f2573d91f64a7e36771f6
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -118,6 +118,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/knsrcfiles/systemmonitor-faces.knsrc
 %{_datadir}/knsrcfiles/systemmonitor-presets.knsrc
 
+%ghost %{_libdir}/libKSysGuardSystemStats.so.1
+%attr(755,root,root) %{_libdir}/libKSysGuardSystemStats.so.*.*.*
+%attr(755,root,root) %{_libdir}/qt5/plugins/ksysguard/process/ksysguard_plugin_network.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/ksysguard/process/ksysguard_plugin_nvidia.so
+%attr(755,root,root) %{_prefix}/libexec/ksysguard/ksgrd_network_helper
+%{_datadir}/dbus-1/interfaces/org.kde.ksystemstats.xml
+
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/ksysguard
@@ -131,3 +138,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libKSysGuardFormatter.so
 %{_libdir}/libKSysGuardSensorFaces.so
 %{_libdir}/libKSysGuardSensors.so
+%{_libdir}/libKSysGuardSystemStats.so
