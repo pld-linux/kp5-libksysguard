@@ -1,15 +1,15 @@
-%define		kdeplasmaver	5.22.5
+%define		kdeplasmaver	5.23.0
 %define		qtver		5.9.0
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
 Name:		kp5-%{kpname}
-Version:	5.22.5
+Version:	5.23.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	923d6533490f0df84176d76e4aa002ee
+# Source0-md5:	ef77f1d53348a0a6e067a67f67985f06
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -124,6 +124,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/ksysguard/process/ksysguard_plugin_nvidia.so
 %attr(755,root,root) %{_prefix}/libexec/ksysguard/ksgrd_network_helper
 %{_datadir}/dbus-1/interfaces/org.kde.ksystemstats.xml
+
+%{_libdir}/qt5/qml/org/kde/ksysguard/faces/SensorRangeSpinBox.qml
 
 %files devel
 %defattr(644,root,root,755)
