@@ -8,7 +8,7 @@
 Summary:	Library for monitoring your system
 Name:		kp5-%{kpname}
 Version:	5.25.5
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -132,8 +132,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %ghost %{_libdir}/libKSysGuardSystemStats.so.1
 %attr(755,root,root) %{_libdir}/libKSysGuardSystemStats.so.*.*.*
+%dir %{_libdir}/qt5/plugins/ksysguard
+%dir %{_libdir}/qt5/plugins/ksysguard/process
 %attr(755,root,root) %{_libdir}/qt5/plugins/ksysguard/process/ksysguard_plugin_network.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/ksysguard/process/ksysguard_plugin_nvidia.so
+%dir %{_prefix}/libexec/ksysguard
 %attr(755,root,root) %{_prefix}/libexec/ksysguard/ksgrd_network_helper
 %{_datadir}/dbus-1/interfaces/org.kde.ksystemstats.xml
 
