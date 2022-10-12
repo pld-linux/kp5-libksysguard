@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	5.25.5
+%define		kdeplasmaver	5.26.0
 %define		qtver		5.15.2
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
 Name:		kp5-%{kpname}
-Version:	5.25.5
-Release:	3
+Version:	5.26.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	625f2b17b04e8e87d9bdfb99ab36be5d
+# Source0-md5:	0722f595da7bf1a7289e5c26a2da644a
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Sensors-devel >= %{qtver}
@@ -141,6 +141,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/interfaces/org.kde.ksystemstats.xml
 
 %{_libdir}/qt5/qml/org/kde/ksysguard/faces/SensorRangeSpinBox.qml
+
+%{_libdir}/qt5/qml/org/kde/ksysguard/faces/Choices.qml
 
 %files devel
 %defattr(644,root,root,755)
