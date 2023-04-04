@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	5.27.3
+%define		kdeplasmaver	5.27.4
 %define		qtver		5.15.2
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
 Name:		kp5-%{kpname}
-Version:	5.27.3
+Version:	5.27.4
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	6c2df7eb05b50c7ea57185b15692a30d
+# Source0-md5:	2439cbc3c1b68a9e0f0c71acd108df13
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Sensors-devel >= %{qtver}
