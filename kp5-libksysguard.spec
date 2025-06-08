@@ -1,9 +1,15 @@
 #
 # Conditional build:
 %bcond_with	tests		# test suite
+%bcond_without	qtwebengine	# WebEngine scripting
+
+%ifnarch %{ix86} %{x8664} %{arm} aarch64
+%undefine	with_qtwebengine
+%endif
 
 %define		kdeplasmaver	5.27.12
-%define		qtver		5.15.2
+%define		kf_ver		5.102.0
+%define		qt_ver		5.15.2
 %define		kpname		libksysguard
 
 Summary:	Library for monitoring your system
@@ -16,27 +22,70 @@ Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
 # Source0-md5:	b59ea2998ded2e9b42ce30c2d0884376
 URL:		https://kde.org/
-BuildRequires:	Qt5Core-devel >= %{qtver}
-BuildRequires:	Qt5Sensors-devel >= %{qtver}
+BuildRequires:	Qt5Core-devel >= %{qt_ver}
+BuildRequires:	Qt5DBus-devel >= %{qt_ver}
+BuildRequires:	Qt5Gui-devel >= %{qt_ver}
+BuildRequires:	Qt5Network-devel >= %{qt_ver}
+BuildRequires:	Qt5Qml-devel >= %{qt_ver}
+BuildRequires:	Qt5Quick-devel >= %{qt_ver}
+BuildRequires:	Qt5Sensors-devel >= %{qt_ver}
+%{?with_qtwebengine:BuildRequires:	Qt5WebEngine-devel >= %{qt_ver}}
+%{?with_qtwebengine:BuildRequires:	Qt5WebChannel-devel >= %{qt_ver}}
+BuildRequires:	Qt5Widgets-devel >= %{qt_ver}
+BuildRequires:	Qt5X11Extras-devel >= %{qt_ver}
 BuildRequires:	cmake >= 3.16.0
-BuildRequires:	kf5-kauth-devel
-BuildRequires:	kf5-kcompletion-devel
-BuildRequires:	kf5-kconfig-devel
-BuildRequires:	kf5-kconfigwidgets-devel
-BuildRequires:	kf5-kcoreaddons-devel
-BuildRequires:	kf5-ki18n-devel
-BuildRequires:	kf5-kiconthemes-devel
-BuildRequires:	kf5-kservice-devel
-BuildRequires:	kf5-kwidgetsaddons-devel
-BuildRequires:	kf5-kwindowsystem-devel
-BuildRequires:	kf5-plasma-framework-devel
-BuildRequires:	libnl-devel
+BuildRequires:	kf5-extra-cmake-modules >= %{kf_ver}
+BuildRequires:	kf5-kauth-devel >= %{kf_ver}
+BuildRequires:	kf5-kconfig-devel >= %{kf_ver}
+BuildRequires:	kf5-kconfigwidgets-devel >= %{kf_ver}
+BuildRequires:	kf5-kcoreaddons-devel >= %{kf_ver}
+BuildRequires:	kf5-kglobalaccel-devel >= %{kf_ver}
+BuildRequires:	kf5-ki18n-devel >= %{kf_ver}
+BuildRequires:	kf5-kiconthemes-devel >= %{kf_ver}
+BuildRequires:	kf5-kio-devel >= %{kf_ver}
+BuildRequires:	kf5-kjobwidgets-devel >= %{kf_ver}
+BuildRequires:	kf5-knewstuff-devel >= %{kf_ver}
+BuildRequires:	kf5-kpackage-devel >= %{kf_ver}
+BuildRequires:	kf5-kservice-devel >= %{kf_ver}
+BuildRequires:	kf5-kwidgetsaddons-devel >= %{kf_ver}
+BuildRequires:	kf5-kwindowsystem-devel >= %{kf_ver}
+# only in autotests and disabled code in signalplotter
+%{?with_tests:BuildRequires:	kf5-plasma-framework-devel >= %{pf_ver}}
+BuildRequires:	kf5-solid-devel >= %{kf_ver}
+BuildRequires:	libnl-devel >= 3.2
 BuildRequires:	libpcap-devel
+BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	lm_sensors-devel
 BuildRequires:	ninja
-BuildRequires:	rpmbuild(macros) >= 1.164
+BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXres-devel
 BuildRequires:	xz
 BuildRequires:	zlib-devel
+Requires:	Qt5Core-devel >= %{qt_ver}
+Requires:	Qt5DBus-devel >= %{qt_ver}
+Requires:	Qt5Gui-devel >= %{qt_ver}
+Requires:	Qt5Network-devel >= %{qt_ver}
+Requires:	Qt5Qml-devel >= %{qt_ver}
+Requires:	Qt5Quick-devel >= %{qt_ver}
+%{?with_qtwebengine:Requires:	Qt5WebEngine >= %{qt_ver}}
+%{?with_qtwebengine:Requires:	Qt5WebChannel >= %{qt_ver}}
+Requires:	Qt5Widgets-devel >= %{qt_ver}
+Requires:	Qt5X11Extras-devel >= %{qt_ver}
+Requires:	kf5-kauth >= %{kf_ver}
+Requires:	kf5-kconfig >= %{kf_ver}
+Requires:	kf5-kconfigwidgets >= %{kf_ver}
+Requires:	kf5-kcoreaddons >= %{kf_ver}
+Requires:	kf5-kglobalaccel >= %{kf_ver}
+Requires:	kf5-ki18n >= %{kf_ver}
+Requires:	kf5-kio >= %{kf_ver}
+Requires:	kf5-kjobwidgets >= %{kf_ver}
+Requires:	kf5-kpackage >= %{kf_ver}
+Requires:	kf5-kservice >= %{kf_ver}
+Requires:	kf5-solid >= %{kf_ver}
+Requires:	kf5-kwidgetsaddons >= %{kf_ver}
+Requires:	kf5-kwindowsystem >= %{kf_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -50,6 +99,13 @@ Summary:	Header files for %{kpname} development
 Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kpname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	Qt5Core-devel >= %{qt_ver}
+Requires:	Qt5Network-devel >= %{qt_ver}
+Requires:	Qt5Widgets-devel >= %{qt_ver}
+Requires:	kf5-kconfig-devel >= %{kf_ver}
+Requires:	kf5-ki18n-devel >= %{kf_ver}
+Requires:	kf5-kiconthemes-devel >= %{kf_ver}
+Requires:	libstdc++-devel >= 6:7
 
 %description devel
 Header files for %{kpname} development.
